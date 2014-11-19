@@ -1,0 +1,9 @@
+Package: naim
+Title: Numerical Analysis Iterative Methods for maximum likelihood estimates
+Version: 0.0.0.9000
+Authors@R: "Derek Chiu <dchiu@stat.ubc.ca> [aut, cre]"
+Description: Provides alternative procedures for computing maximum likelihood
+    estimates when closed form solutions are unattainable
+Depends: R (>= 3.1.2)
+License: CC0
+LazyData: true
