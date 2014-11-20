@@ -9,13 +9,13 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-### Motivation
+## Motivation
 The usual method of finding maximum likelihood estimates involves deriving the log likelihood function with respect to each parameter we want to estimate, then setting this equation to 0. But there are time when this is not possible. For example, in the logistic regression scenario, closed form solutions cannot be obtained. Thus we need to resort to some iterative method in order to compute these estimates. In this way, we usually say the MLE is found when the improvement after each step is smaller than some tolerance level.
 
 This package currently implements the Newton-Raphson method for simple logistic regression, and the EM algorithm for estimating the frequency of blood alleles.
 
 
-### Usage
+## Usage
 First load the package via:
 
 ```{r}
@@ -89,7 +89,7 @@ Again, we can expect the iterative process using `verbose = TRUE`:
 EM_blood(A, B, AB, O, verbose = TRUE)
 ```
 
-### Reflections
+## Reflections
 _Note: this section would not normally appear in a vignette._
 
 1. Trying to figure out how to get an `overview.md` to be produced from the vignette YAML. Ended up manually calling `rmarkdown::render("~/GitHub/naim/vignettes/overview.Rmd", "md_document")`. No conflicts with `R CMD Check` and `Build & Reload`. Many thanks to the course instructor and TAs for help on this!

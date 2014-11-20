@@ -1,4 +1,5 @@
-### Motivation
+Motivation
+----------
 
 The usual method of finding maximum likelihood estimates involves
 deriving the log likelihood function with respect to each parameter we
@@ -13,7 +14,8 @@ This package currently implements the Newton-Raphson method for simple
 logistic regression, and the EM algorithm for estimating the frequency
 of blood alleles.
 
-### Usage
+Usage
+-----
 
 First load the package via:
 
@@ -147,7 +149,8 @@ Again, we can expect the iterative process using `verbose = TRUE`:
     ##     pA_hat   pB_hat   pO_hat
     ## 1 0.219678 0.130473 0.649849
 
-### Reflections
+Reflections
+-----------
 
 *Note: this section would not normally appear in a vignette.*
 
