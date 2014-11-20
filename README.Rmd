@@ -6,7 +6,7 @@ output:
 naim
 =======
 
-A package that uses <b>n</b>umerical <b>a</b>nalysis <b>t</b>terative <b>m</b>ethods to find maximum likelihood estiamtes when closed form solutions cannot be obtained.
+A package that uses <b>n</b>umerical <b>a</b>nalysis <b>i</b>terative <b>m</b>ethods to find maximum likelihood estiamtes when closed form solutions cannot be obtained.
 
 ### Installation
 Install `naim` from GitHub:
