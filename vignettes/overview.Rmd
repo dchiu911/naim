@@ -16,4 +16,74 @@ This package currently implements the Newton-Raphson method for simple logistic 
 
 
 ### Usage
+First load the package via:
+
+```{r}
+library(naim)
+```
+
+The `NR_logit` function find estimated parameters under simple logistic regression, where closed form solutions are not obtainable. Using a method like Newton-Raphson, we supply an initial feasible estimate, and iteratively improve the estimate.
+
+All we need is to supply it with __3 required arguments__: covariates, number of trials, and successes. Details found in the documentation via `?NR_logit`. Let's see an example:
+
+```{r}
+# Covariates
+x <- rnorm(100, mean = 3, sd = 0.2)
+
+# Number of trials
+n <- sample(1:100, replace = TRUE)
+
+# Successes
+y <- rbinom(100, size = n, prob = 0.6)
+
+# Data set
+head(data.frame(x, n, y))
+```
+
+The default call to `NR_logit` returns a data.frame with the intercept and slope MLE.
+
+```{r}
+NR_logit(x, y, n)
+```
+
+Suppose we wanted to see the iterative process, i.e. the incremental improvements in the estimated parameters. This can be done by setting the argument `verbose = TRUE`.
+
+```{r}
+NR_logit(x, y, n, verbose = TRUE)
+```
+
+It shows the initial value used (which is always (0, 0)), the updated estimates at each iteration, and the final MLE.
+
+The stopping criterion occurs when the largest absolute error of either parameter falls below a certain tolerance level. By default the tolerance is set to __1e-6__. If we wanted to increase the accuracy of our estimate, we can manually set a lower tolerance by adding the argument `tolerance = 1e-10`, for example.
+
+```{r}
+NR_logit(x, y, n, tol = 1e-15, verbose = TRUE)
+```
+
+Notice that the Newton-Raphson takes 12 iterations to converge now because the tolerance has been set to an extremely small value. In the context of this example, there is no significant difference from our previous estimate.
+
+The second function of this package uses the EM algorithm to estimate the frequency of blood alleles (A, B, or O) in a population given their phenotypic frequencies.
+An iterative method is needed because closed form solutions cannot be obtained. The allele frequencies are intertwined within the six possible blood genotypes, forming the latent variables in our problem.
+
+Using `EM_blood`, you can quickly obtain the three MLE by providing the total number of people who have A, B, AB, and O. The arguments `tol` and `verbose` are also implemented and function the exact same way as in `NR_logit`.
+
+Let's work through a simple example. Suppose the phenotypic frequencies are as given below:
+
+```{r}
+A <- 80; B <- 45; AB <- 13; O <- 100
+```
+
+Then the allele frequencies are:
+
+```{r}
+EM_blood(A, B, AB, O)
+```
+
+The prevalence of the B antigen is the lowest in this population whereas having no antigen has the highest probability. _Note that the sum of the probabilities is always 1 (with some rounding error)._
+
+Again, we can expect the iterative process using `verbose = TRUE`:
+
+```{r}
+EM_blood(A, B, AB, O, verbose = TRUE)
+```
 
