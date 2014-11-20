@@ -28,6 +28,8 @@ All we need is to supply it with **3 required arguments**: covariates,
 number of trials, and successes. Details found in the documentation via
 `?NR_logit`. Let's see an example:
 
+    set.seed(547)
+
     # Covariates
     x <- rnorm(100, mean = 3, sd = 0.2)
 
@@ -41,20 +43,20 @@ number of trials, and successes. Details found in the documentation via
     head(data.frame(x, n, y))
 
     ##          x  n  y
-    ## 1 3.221225 82 52
-    ## 2 3.095797 29 15
-    ## 3 2.880289 87 50
-    ## 4 2.961991 91 56
-    ## 5 2.874805 68 38
-    ## 6 2.623090 84 53
+    ## 1 3.067176 61 41
+    ## 2 3.088659 23 18
+    ## 3 2.958531 61 38
+    ## 4 2.952617 83 50
+    ## 5 3.324626 49 24
+    ## 6 3.019444 90 49
 
 The default call to `NR_logit` returns a data.frame with the intercept
 and slope MLE.
 
     NR_logit(x, y, n)
 
-    ##   intercept      slope
-    ## 1 0.3565655 0.01299847
+    ##   intercept       slope
+    ## 1 0.5229187 -0.03921141
 
 Suppose we wanted to see the iterative process, i.e. the incremental
 improvements in the estimated parameters. This can be done by setting
@@ -63,13 +65,14 @@ the argument `verbose = TRUE`.
     NR_logit(x, y, n, verbose = TRUE)
 
     ## [1] "Initial Value: intercept = 0 slope = 0"
-    ## [1] "Iteration 1 : intercept = 0.352972 , slope = 0.012503"
-    ## [1] "Iteration 2 : intercept = 0.356565 , slope = 0.012998"
-    ## [1] "Iteration 3 : intercept = 0.356565 , slope = 0.012998"
-    ## [1] "MLE are intercept = 0.356565 and slope = 0.012998"
+    ## [1] "Iteration 1 : intercept = 0.5127 , slope = -0.037627"
+    ## [1] "Iteration 2 : intercept = 0.52291 , slope = -0.039209"
+    ## [1] "Iteration 3 : intercept = 0.522919 , slope = -0.039211"
+    ## [1] "Iteration 4 : intercept = 0.522919 , slope = -0.039211"
+    ## [1] "MLE are intercept = 0.522919 and slope = -0.039211"
 
-    ##   intercept      slope
-    ## 1 0.3565655 0.01299847
+    ##   intercept       slope
+    ## 1 0.5229187 -0.03921141
 
 It shows the initial value used (which is always (0, 0)), the updated
 estimates at each iteration, and the final MLE.
@@ -83,17 +86,15 @@ argument `tolerance = 1e-10`, for example.
     NR_logit(x, y, n, tol = 1e-15, verbose = TRUE)
 
     ## [1] "Initial Value: intercept = 0 slope = 0"
-    ## [1] "Iteration 1 : intercept = 0.352972 , slope = 0.012503"
-    ## [1] "Iteration 2 : intercept = 0.356565 , slope = 0.012998"
-    ## [1] "Iteration 3 : intercept = 0.356565 , slope = 0.012998"
-    ## [1] "Iteration 4 : intercept = 0.356565 , slope = 0.012998"
-    ## [1] "Iteration 5 : intercept = 0.356565 , slope = 0.012998"
-    ## [1] "Iteration 6 : intercept = 0.356565 , slope = 0.012998"
-    ## [1] "Iteration 7 : intercept = 0.356565 , slope = 0.012998"
-    ## [1] "MLE are intercept = 0.356565 and slope = 0.012998"
+    ## [1] "Iteration 1 : intercept = 0.5127 , slope = -0.037627"
+    ## [1] "Iteration 2 : intercept = 0.52291 , slope = -0.039209"
+    ## [1] "Iteration 3 : intercept = 0.522919 , slope = -0.039211"
+    ## [1] "Iteration 4 : intercept = 0.522919 , slope = -0.039211"
+    ## [1] "Iteration 5 : intercept = 0.522919 , slope = -0.039211"
+    ## [1] "MLE are intercept = 0.522919 and slope = -0.039211"
 
-    ##   intercept      slope
-    ## 1 0.3565655 0.01299847
+    ##   intercept       slope
+    ## 1 0.5229187 -0.03921141
 
 Notice that the Newton-Raphson takes 12 iterations to converge now
 because the tolerance has been set to an extremely small value. In the
@@ -145,3 +146,34 @@ Again, we can expect the iterative process using `verbose = TRUE`:
 
     ##     pA_hat   pB_hat   pO_hat
     ## 1 0.219678 0.130473 0.649849
+
+### Reflections
+
+*Note: this section would not normally appear in a vignette.*
+
+1.  Trying to figure out how to get an `overview.md` to be produced from
+    the vignette YAML. Ended up manually calling
+    `rmarkdown::render("~/GitHub/naim/vignettes/overview.Rmd", "md_document")`.
+    No conflicts with `R CMD Check` and `Build & Reload`. Many thanks to
+    the course instructor and TAs for help on this!
+2.  Sometimes my `Build & Reload` doesn't work unless I delete a
+    `lock00` file in my home directory. Not sure why this is, but the
+    package builds successfully thereafter.
+3.  Uncertainty about `LaTeX` style markup in R documentation. Seems
+    like greek letters like `\epsilon` work, but accents (`\hat`),
+    operators (`\frac`), etc. do not. Wondering how to make the help
+    files look as professional as possible.
+4.  My `R CMD Check` passes everything except for **1 NOTE**: my README
+    files are not usually part of the home package directory. My guess
+    is that for a package trying to be published to CRAN, the README
+    files should be omitted, but if it;s published to GitHub, then the
+    README files should definitely exist.
+5.  There seems to be a lot of repeated information in my documentation.
+    I guess it's best to be very clear about what your package does, but
+    I found myself writing similar material in my `vignette`, `README`,
+    `?naim` documentation, and `DESCRIPTION` file. It would be useful to
+    have some more concrete guidance on any subtle differences,
+    otherwise I would simply just copy over explanations, examples, etc.
+6.  Testing is very useful and forces me to look for loop holes in my
+    function definition. May seem tedious at first but worth the effort
+    if you want to write a professional package.

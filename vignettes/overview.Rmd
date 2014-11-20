@@ -27,6 +27,8 @@ The `NR_logit` function find estimated parameters under simple logistic regressi
 All we need is to supply it with __3 required arguments__: covariates, number of trials, and successes. Details found in the documentation via `?NR_logit`. Let's see an example:
 
 ```{r}
+set.seed(547)
+
 # Covariates
 x <- rnorm(100, mean = 3, sd = 0.2)
 
@@ -87,3 +89,12 @@ Again, we can expect the iterative process using `verbose = TRUE`:
 EM_blood(A, B, AB, O, verbose = TRUE)
 ```
 
+### Reflections
+_Note: this section would not normally appear in a vignette._
+
+1. Trying to figure out how to get an `overview.md` to be produced from the vignette YAML. Ended up manually calling `rmarkdown::render("~/GitHub/naim/vignettes/overview.Rmd", "md_document")`. No conflicts with `R CMD Check` and `Build & Reload`. Many thanks to the course instructor and TAs for help on this!
+2. Sometimes my `Build & Reload` doesn't work unless I delete a `lock00` file in my home directory. Not sure why this is, but the package builds successfully thereafter.
+3. Uncertainty about `LaTeX` style markup in R documentation. Seems like greek letters like `\epsilon` work, but accents (`\hat`), operators (`\frac`), etc. do not. Wondering how to make the help files look as professional as possible.
+4. My `R CMD Check` passes everything except for __1 NOTE__: my README files are not usually part of the home package directory. My guess is that for a package trying to be published to CRAN, the README files should be omitted, but if it;s published to GitHub, then the README files should definitely exist.
+5. There seems to be a lot of repeated information in my documentation. I guess it's best to be very clear about what your package does, but I found myself writing similar material in my `vignette`, `README`, `?naim` documentation, and `DESCRIPTION` file. It would be useful to have some more concrete guidance on any subtle differences, otherwise I would simply just copy over explanations, examples, etc.
+6. Testing is very useful and forces me to look for loop holes in my function definition. May seem tedious at first but worth the effort if you want to write a professional package.
