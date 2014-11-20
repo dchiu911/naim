@@ -23,7 +23,7 @@
 #'
 #' # Population of 1000, with different phenotypic frequencies
 #' A <- 500; B <- 200; AB <- 50; O <- 250
-#' EM_blood(A, B, AB, O)
+#' EM_blood(A, B, AB, O, verbose = TRUE)
 EM_blood <- function(A, B, AB, O, tol = 1e-6, verbose = FALSE){
 	assertthat::assert_that(all(!is.na(c(A, B, AB, O))))
 

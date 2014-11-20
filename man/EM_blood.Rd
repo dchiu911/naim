@@ -38,6 +38,6 @@ EM_blood(A, B, AB, O)
 
 # Population of 1000, with different phenotypic frequencies
 A <- 500; B <- 200; AB <- 50; O <- 250
-EM_blood(A, B, AB, O)
+EM_blood(A, B, AB, O, verbose = TRUE)
 }
 
