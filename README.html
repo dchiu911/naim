@@ -71,8 +71,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 n &lt;- sample(1:100, replace = TRUE)
 y &lt;- rbinom(100, size = n, prob = 0.6)
 NR_logit(x, y, n)</code></pre>
-<pre><code>##   intercept       slope
-## 1 0.4878041 -0.02807217</code></pre>
+<pre><code>##   intercept      slope
+## 1 0.7282151 -0.1210326</code></pre>
 <p>Given the number of people with blood type A, B, AB, and O, the frequency of the blood alleles A, B, and O are:</p>
 <pre class="r"><code>A &lt;- 10
 B &lt;- 20
@@ -87,7 +87,7 @@ EM_blood(A, B, AB, O)</code></pre>
 <h3>Vignette</h3>
 <p>Further details can be found in the vignette for this package. To view it, run this command in the R console:</p>
 <pre class="r"><code>browseVignettes(&quot;naim&quot;)</code></pre>
-<p>Once there, you can click on the <code>HTML</code> link to get a nice introduction to <code>gameday</code>. The help files can be accessed with <code>?NR_logit</code> and <code>?EM_blood</code> for details on function arguments and some examples.</p>
+<p>Once there, you can click on the <code>HTML</code> link to get a nice introduction to <code>naim</code>. The help files can be accessed with <code>?NR_logit</code> and <code>?EM_blood</code> for details on function arguments and some examples.</p>
 <p>Alternatively, there is a markdown version available in this repository, found <a href="https://github.com/dchiu911/naim/blob/master/vignettes/overview.md">here</a>.</p>
 </div>
 </div>

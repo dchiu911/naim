@@ -53,6 +53,6 @@ Further details can be found in the vignette for this package. To view it, run t
 browseVignettes("naim")
 ```
 
-Once there, you can click on the `HTML` link to get a nice introduction to `gameday`. The help files can be accessed with `?NR_logit` and `?EM_blood` for details on function arguments and some examples.
+Once there, you can click on the `HTML` link to get a nice introduction to `naim`. The help files can be accessed with `?NR_logit` and `?EM_blood` for details on function arguments and some examples.
 
 Alternatively, there is a markdown version available in this repository, found [here](https://github.com/dchiu911/naim/blob/master/vignettes/overview.md).

@@ -33,8 +33,8 @@ NR_logit(x, y, n)
 ```
 
 ```
-##   intercept       slope
-## 1 0.4878041 -0.02807217
+##   intercept      slope
+## 1 0.7282151 -0.1210326
 ```
 
 Given the number of people with blood type A, B, AB, and O, the frequency of the blood alleles A, B, and O are:
@@ -63,6 +63,6 @@ Further details can be found in the vignette for this package. To view it, run t
 browseVignettes("naim")
 ```
 
-Once there, you can click on the `HTML` link to get a nice introduction to `gameday`. The help files can be accessed with `?NR_logit` and `?EM_blood` for details on function arguments and some examples.
+Once there, you can click on the `HTML` link to get a nice introduction to `naim`. The help files can be accessed with `?NR_logit` and `?EM_blood` for details on function arguments and some examples.
 
 Alternatively, there is a markdown version available in this repository, found [here](https://github.com/dchiu911/naim/blob/master/vignettes/overview.md).
