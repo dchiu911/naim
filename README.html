@@ -54,7 +54,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="naim" class="section level1">
 <h1>naim</h1>
-<p>A package that uses <b>n</b>umerical <b>a</b>nalysis <b>t</b>terative <b>m</b>ethods to find maximum likelihood estiamtes when closed form solutions cannot be obtained.</p>
+<p>A package that uses <b>n</b>umerical <b>a</b>nalysis <b>i</b>terative <b>m</b>ethods to find maximum likelihood estiamtes when closed form solutions cannot be obtained.</p>
 <div id="installation" class="section level3">
 <h3>Installation</h3>
 <p>Install <code>naim</code> from GitHub:</p>
@@ -71,8 +71,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 n &lt;- sample(1:100, replace = TRUE)
 y &lt;- rbinom(100, size = n, prob = 0.6)
 NR_logit(x, y, n)</code></pre>
-<pre><code>##    intercept      slope
-## 1 0.08055338 0.09854273</code></pre>
+<pre><code>##   intercept       slope
+## 1 0.4878041 -0.02807217</code></pre>
 <p>Given the number of people with blood type A, B, AB, and O, the frequency of the blood alleles A, B, and O are:</p>
 <pre class="r"><code>A &lt;- 10
 B &lt;- 20

@@ -1,7 +1,7 @@
 naim
 =======
 
-A package that uses <b>n</b>umerical <b>a</b>nalysis <b>t</b>terative <b>m</b>ethods to find maximum likelihood estiamtes when closed form solutions cannot be obtained.
+A package that uses <b>n</b>umerical <b>a</b>nalysis <b>i</b>terative <b>m</b>ethods to find maximum likelihood estiamtes when closed form solutions cannot be obtained.
 
 ### Installation
 Install `naim` from GitHub:
@@ -33,8 +33,8 @@ NR_logit(x, y, n)
 ```
 
 ```
-##    intercept      slope
-## 1 0.08055338 0.09854273
+##   intercept       slope
+## 1 0.4878041 -0.02807217
 ```
 
 Given the number of people with blood type A, B, AB, and O, the frequency of the blood alleles A, B, and O are:
