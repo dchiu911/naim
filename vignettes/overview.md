@@ -3,12 +3,12 @@ Motivation
 
 The usual method of finding maximum likelihood estimates involves
 deriving the log likelihood function with respect to each parameter we
-want to estimate, then setting this equation to 0. But there are time
+want to estimate, then setting this equation to 0. But there are times
 when this is not possible. For example, in the logistic regression
 scenario, closed form solutions cannot be obtained. Thus we need to
 resort to some iterative method in order to compute these estimates. In
 this way, we usually say the MLE is found when the improvement after
-each step is smaller than some tolerance level.
+each iteration becomes negligible.
 
 This package currently implements the Newton-Raphson method for simple
 logistic regression, and the EM algorithm for estimating the frequency
@@ -21,14 +21,16 @@ First load the package via:
 
     library(naim)
 
-The `NR_logit` function find estimated parameters under simple logistic
-regression, where closed form solutions are not obtainable. Using a
-method like Newton-Raphson, we supply an initial feasible estimate, and
+### NR\_logit(x, y, n, tol = 1e-6, verbose = FALSE)
+
+The `NR_logit` function finds estimated parameters under simple logistic
+regression, where closed form solutions are not obtainable. Using the
+Newton-Raphson method, we supply an initial feasible estimate, and
 iteratively improve the estimate.
 
-All we need is to supply it with **3 required arguments**: covariates,
-number of trials, and successes. Details found in the documentation via
-`?NR_logit`. Let's see an example:
+There are **3 required arguments**: covariates, number of trials, and
+successes. More details are in the documentation via `?NR_logit`. Let's
+see an example:
 
     set.seed(547)
 
@@ -61,8 +63,8 @@ and slope MLE.
     ## 1 0.5229187 -0.03921141
 
 Suppose we wanted to see the iterative process, i.e. the incremental
-improvements in the estimated parameters. This can be done by setting
-the argument `verbose = TRUE`.
+improvements in the estimated parameters. This can be accomplished by
+setting the argument `verbose = TRUE` (which is `FALSE` by default).
 
     NR_logit(x, y, n, verbose = TRUE)
 
@@ -79,11 +81,11 @@ the argument `verbose = TRUE`.
 It shows the initial value used (which is always (0, 0)), the updated
 estimates at each iteration, and the final MLE.
 
-The stopping criterion occurs when the largest absolute error of either
-parameter falls below a certain tolerance level. By default the
-tolerance is set to **1e-6**. If we wanted to increase the accuracy of
-our estimate, we can manually set a lower tolerance by adding the
-argument `tolerance = 1e-10`, for example.
+The stopping criterion occurs when the absolute error of either
+parameter with its previous value falls below a certain tolerance level.
+By default the tolerance is set to **1e-6**. If we wanted to increase
+the accuracy of our estimate, we can manually set a lower tolerance by
+adding the argument `tolerance = 1e-10`, for example.
 
     NR_logit(x, y, n, tol = 1e-15, verbose = TRUE)
 
@@ -98,26 +100,30 @@ argument `tolerance = 1e-10`, for example.
     ##   intercept       slope
     ## 1 0.5229187 -0.03921141
 
-Notice that the Newton-Raphson takes 12 iterations to converge now
-because the tolerance has been set to an extremely small value. In the
-context of this example, there is no significant difference from our
-previous estimate.
+Notice that the Newton-Raphson takes an additional iteration to converge
+because the tolerance has been set to a smaller value. In the context of
+this example, there is no significant difference from our previous
+estimate.
+
+### EM\_blood(A, B, AB, O, tol = 1e-6, verbose = FALSE)
 
 The second function of this package uses the EM algorithm to estimate
 the frequency of blood alleles (A, B, or O) in a population given their
 phenotypic frequencies. An iterative method is needed because closed
 form solutions cannot be obtained. The allele frequencies are
 intertwined within the six possible blood genotypes, forming the latent
-variables in our problem.
+variables in our problem. More details are in the documentation via
+`?EM_blood`.
 
 Using `EM_blood`, you can quickly obtain the three MLE by providing the
-total number of people who have A, B, AB, and O. The arguments `tol` and
-`verbose` are also implemented and function the exact same way as in
-`NR_logit`.
+total number of people who have A, B, AB, and O blood types. The
+arguments `tol` and `verbose` are also implemented and function the
+exact same way as in `NR_logit`.
 
 Let's work through a simple example. Suppose the phenotypic frequencies
 are as given below:
 
+    # Number of people who have each blood type in population
     A <- 80; B <- 45; AB <- 13; O <- 100
 
 Then the allele frequencies are:
@@ -131,7 +137,7 @@ The prevalence of the B antigen is the lowest in this population whereas
 having no antigen has the highest probability. *Note that the sum of the
 probabilities is always 1 (with some rounding error).*
 
-Again, we can expect the iterative process using `verbose = TRUE`:
+Again, we can inspect the iterative process using `verbose = TRUE`:
 
     EM_blood(A, B, AB, O, verbose = TRUE)
 
@@ -149,6 +155,9 @@ Again, we can expect the iterative process using `verbose = TRUE`:
     ##     pA_hat   pB_hat   pO_hat
     ## 1 0.219678 0.130473 0.649849
 
+Note that the initial probabilities correspond to the situation of
+equally likely allele frequency.
+
 Reflections
 -----------
 
@@ -159,13 +168,16 @@ Reflections
     `rmarkdown::render("~/GitHub/naim/vignettes/overview.Rmd", "md_document")`.
     No conflicts with `R CMD Check` and `Build & Reload`. Many thanks to
     the course instructor and TAs for help on this!
+
 2.  Sometimes my `Build & Reload` doesn't work unless I delete a
     `lock00` file in my home directory. Not sure why this is, but the
     package builds successfully thereafter.
+
 3.  Uncertainty about `LaTeX` style markup in R documentation. Seems
-    like greek letters like `\epsilon` work, but accents (`\hat`),
+    like Greek letters like `\epsilon` work, but accents (`\hat`),
     operators (`\frac`), etc. do not. Wondering how to make the help
     files look as professional as possible.
+
 4.  My `R CMD Check` passed everything except for **one NOTE**:
     `* checking top-level files ... NOTE Non-standard file/directory found at top level: 'README.Rmd' 'README.html'`.
     To "fix"" this I added `README.Rmd` and `README.html` to the
@@ -173,15 +185,18 @@ Reflections
     notes or warnings. My question is whether this workflow would
     coincide with CRAN guidelines after my modification of the
     `.Rbuildignore` file.
+
 5.  There seems to be a lot of repeated information in my documentation.
     I guess it's best to be very clear about what your package does, but
     I found myself writing similar material in my `vignette`, `README`,
     `?naim` documentation, and `DESCRIPTION` file. It would be useful to
     have some more concrete guidance on any subtle differences,
     otherwise I would simply just copy over explanations, examples, etc.
+
 6.  Testing is very useful and forces me to look for loop holes in my
     function definition. May seem tedious at first but worth the effort
     if you want to write a professional package.
+
 7.  The two functions in this package were written by me very recently
     for another course called *STAT 560 Statistical Theory I*. I had the
     opportunity to streamline the functions, polish them up, and write
