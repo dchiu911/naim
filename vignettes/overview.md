@@ -180,10 +180,10 @@ Reflections
 
 4.  My `R CMD Check` passed everything except for **one NOTE**:
     `* checking top-level files ... NOTE Non-standard file/directory found at top level: 'README.Rmd' 'README.html'`.
-    To "fix"" this I added `README.Rmd` and `README.html` to the
-    `.Rbuildignore` file. Now the `R CMD Check` succeeds without even
+    To "fix" this I added `README.Rmd` and `README.html` to the
+    `.Rbuildignore` file. Now the `R CMD Check` succeeds without any
     notes or warnings. My question is whether this workflow would
-    coincide with CRAN guidelines after my modification of the
+    coincide with CRAN guidelines after my modification to the
     `.Rbuildignore` file.
 
 5.  There seems to be a lot of repeated information in my documentation.
@@ -198,7 +198,7 @@ Reflections
     if you want to write a professional package.
 
 7.  The two functions in this package were written by me very recently
-    for another course called *STAT 560 Statistical Theory I*. I had the
-    opportunity to streamline the functions, polish them up, and write
-    explanations. No better way to learn the material than to
+    for another course called *STAT 560 Statistical Inference I*. I had
+    the opportunity to streamline the functions, polish them up, and
+    write explanations. No better way to learn the material than to
     incorporate them as functions in my own R package!

@@ -6,7 +6,7 @@
 #' We can view \code{y} as the number of successes out of \code{n} trials, with probability of success \code{p} unknown. The linear predictor is related to \code{p} by the log odds ratio: \eqn{log(p/(1-p)) = \alpha + \beta x}.
 #' It is known that in logsitic regression, we cannot obtain closed form solutions for \eqn{\alpha} and \eqn{\beta}. This function uses the Newton-Raphson method to estimate these parameters. Our initial value is (\eqn{\alpha_0}, \eqn{\beta_0)} = (0, 0), an intuitive choice that corresponds to the case of equally likely outcomes (p = 0.5).
 #'
-#' In the function definition, the matrix \code{L} is the system of nonlinear score functions we need to solve, and \code{L_prime} is the derivative of \code{L}. Hence,each step of the iteration computes (\eqn{\alpha_{i+1}}, \eqn{\beta_{i+1}}) = (\eqn{\alpha_{i}}, \eqn{\beta_{i}}) + \code{L_prime}^-1\ * \code{L}.
+#' In the function definition, the matrix \code{L} is the system of nonlinear score functions we need to solve, and \code{L_prime} is the derivative of \code{L}. Hence, each step of the iteration computes updated estimates via (\eqn{\alpha_{i+1}}, \eqn{\beta_{i+1}}) = (\eqn{\alpha_{i}}, \eqn{\beta_{i}}) + \code{L_prime}^-1 * \code{L}.
 #'
 #' @param x vector of covariates (predictor)
 #' @param y vector of responses, each one distributed as a Binomial random variable

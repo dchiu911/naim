@@ -103,10 +103,10 @@ _Note: this section would not normally appear in a vignette._
 
 3. Uncertainty about `LaTeX` style markup in R documentation. Seems like Greek letters like `\epsilon` work, but accents (`\hat`), operators (`\frac`), etc. do not. Wondering how to make the help files look as professional as possible.
 
-4. My `R CMD Check` passed everything except for __one NOTE__: `* checking top-level files ... NOTE Non-standard file/directory found at top level: 'README.Rmd' 'README.html'`. To "fix"" this I added `README.Rmd` and `README.html` to the `.Rbuildignore` file. Now the `R CMD Check` succeeds without even notes or warnings. My question is whether this workflow would coincide with CRAN guidelines after my modification of the `.Rbuildignore` file.
+4. My `R CMD Check` passed everything except for __one NOTE__: `* checking top-level files ... NOTE Non-standard file/directory found at top level: 'README.Rmd' 'README.html'`. To "fix" this I added `README.Rmd` and `README.html` to the `.Rbuildignore` file. Now the `R CMD Check` succeeds without any notes or warnings. My question is whether this workflow would coincide with CRAN guidelines after my modification to the `.Rbuildignore` file.
 
 5. There seems to be a lot of repeated information in my documentation. I guess it's best to be very clear about what your package does, but I found myself writing similar material in my `vignette`, `README`, `?naim` documentation, and `DESCRIPTION` file. It would be useful to have some more concrete guidance on any subtle differences, otherwise I would simply just copy over explanations, examples, etc.
 
 6. Testing is very useful and forces me to look for loop holes in my function definition. May seem tedious at first but worth the effort if you want to write a professional package.
 
-7. The two functions in this package were written by me very recently for another course called _STAT 560 Statistical Theory I_. I had the opportunity to streamline the functions, polish them up, and write explanations. No better way to learn the material than to incorporate them as functions in my own R package!
+7. The two functions in this package were written by me very recently for another course called _STAT 560 Statistical Inference I_. I had the opportunity to streamline the functions, polish them up, and write explanations. No better way to learn the material than to incorporate them as functions in my own R package!

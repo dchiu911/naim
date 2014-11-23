@@ -2,11 +2,11 @@
 #'
 #' Given the phenotypic frequencies for the four blood types (A, B, AB, O), uses the EM algorithm to obtain maximum likelihood estimates for the frequency of the three blood alleles (A, B, O) in a population.
 #'
-#' The genotypic frequencies are usually not known for an entire population, because people with blood type A can have a genotype of A/A or A/O, and people with blood type B can have a genotype of B/B or B/O. For blood types AB and O, there is a one-to-one mapping to the genotypes A/B and O/O however. Hence, in the EM setting, the six possible genotypes are viewed as latent variables. Using traditional MLE, closed form solutions cannot obtained.
+#' The genotypic frequencies are usually not known for an entire population, because people with blood type A can have a genotype of A/A or A/O, and people with blood type B can have a genotype of B/B or B/O. For blood types AB and O, there is a one-to-one mapping to the genotypes A/B and O/O however. Hence, in the EM setting, the six possible genotypes are viewed as latent variables that follow a multinomial distribution. Using traditional MLE, closed form solutions cannot be obtained.
 #'
 #' We assume that the population is in Hardy-Weinberg Equilibrium. That is, for genotype of form X/X, P(X/X) = P(X)^2 and for genotype of form X/Y, P(X/Y) = 2 * P(X) * P(Y).
 #'
-#' An initial value of (1/3, 1/3, 1/3) is reasonable as it corresponds to the situation of equal allele frequency. In the function definition, the iterations are updated in the calls to \code{pA_new}, \code{pB_new}, \code{pO_new}. The equations can be verified by going through the Expectation-Maximization algorithm.
+#' An initial probability estimate of (1/3, 1/3, 1/3) is reasonable as it corresponds to the situation of uniform allele frequencies. In the function definition, the iterations are updated in the calls to \code{pA_new}, \code{pB_new}, and \code{pO_new}. These equations are derived by going through the Expectation-Maximization algorithm and applying Lagrange multipliers as the last step.
 #'
 #' @param A number of people with blood type A
 #' @param B number of people with blood type B
@@ -14,7 +14,7 @@
 #' @param O number of people with blood type O
 #' @param tol tolerance level governing when to stop the iterations. Here we use the large absolute error for any parameter and compare it to \code{tol}. Iterations stop when the error is less than \code{tol}. Defaults to \code{1e-6}.
 #' @param verbose Logical; if \code{TRUE} then function prints iterative feedback to the console, and if \code{FALSE} there is no printing. Defaults to \code{FALSE}.
-#' @return A data.frame with three entries in one row, giving the estimated allele frequencies of A, B, and O respectively.
+#' @return A data.frame with three entries in one row, giving the estimated blood allele frequencies of A, B, and O respectively.
 #' @export
 #' @examples
 #' # Population of 100, with equal phenotypic frequencies
