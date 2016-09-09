@@ -20,3 +20,7 @@ test_that("Can't operate on invalid input vectors", {
 	expect_error(NR_logit(has_NA, y, n))
 	expect_error(NR_logit(x, y_larger_than_n, n))
 })
+
+test_that("Feedback prints to console", {
+	expect_output(NR_logit(x, y, n, verbose = TRUE))
+})

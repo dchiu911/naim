@@ -20,3 +20,7 @@ test_that("Error if any argument has NA", {
 	expect_error(EM_blood(A, B, NA, O))
 	expect_error(EM_blood(A, B, AB, NA))
 })
+
+test_that("Feedback prints to console", {
+	expect_output(EM_blood(A, B, AB, O, verbose = TRUE))
+})

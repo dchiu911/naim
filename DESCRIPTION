@@ -1,6 +1,6 @@
 Package: naim
 Title: Numerical Analysis Iterative Methods for maximum likelihood estimates
-Version: 0.2.2
+Version: 0.2.3
 Date: 2016-09-09
 Authors@R: "Derek Chiu <dchiu@bccrc.ca> [aut, cre]"
 Description: Provides alternative procedures for computing maximum likelihood

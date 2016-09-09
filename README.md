@@ -1,6 +1,9 @@
 naim
 =======
 
+[![Build Status](https://travis-ci.org/dchiu911/naim.svg?branch=master)](https://travis-ci.org/dchiu911/naim)
+[![codecov](https://codecov.io/gh/dchiu911/naim/branch/master/graph/badge.svg)](https://codecov.io/gh/dchiu911/naim)
+
 A package that uses <b>n</b>umerical <b>a</b>nalysis <b>i</b>terative <b>m</b>ethods to find maximum likelihood estimates when closed form solutions cannot be obtained.
 
 ### Installation
