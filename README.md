@@ -1,7 +1,7 @@
 naim
 =======
 
-A package that uses <b>n</b>umerical <b>a</b>nalysis <b>i</b>terative <b>m</b>ethods to find maximum likelihood estiamtes when closed form solutions cannot be obtained.
+A package that uses <b>n</b>umerical <b>a</b>nalysis <b>i</b>terative <b>m</b>ethods to find maximum likelihood estimates when closed form solutions cannot be obtained.
 
 ### Installation
 Install `naim` from GitHub:
@@ -26,6 +26,7 @@ Given vectors `x`, `n`, and `y`, for the covariates, trials, and successes in a 
 
 
 ```r
+set.seed(1)
 x <- rnorm(100, mean = 3, sd = 0.2)
 n <- sample(1:100, replace = TRUE)
 y <- rbinom(100, size = n, prob = 0.6)
@@ -34,7 +35,7 @@ NR_logit(x, y, n)
 
 ```
 ##   intercept      slope
-## 1 0.7282151 -0.1210326
+## 1  0.639122 -0.0694504
 ```
 
 Given the number of people with blood type A, B, AB, and O, the frequency of the blood alleles A, B, and O are:
