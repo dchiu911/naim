@@ -1,5 +1,10 @@
-## Tests for `EM_blood`
-A <- 80; B <- 150; AB <- 30; O = 200
+
+context("EM_blood")
+
+A <- 80
+B <- 150
+AB <- 30
+O <- 200
 
 test_that("Always returns data.frame", {
 	expect_is(EM_blood(A, B, AB, O), "data.frame")
