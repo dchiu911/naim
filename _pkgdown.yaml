@@ -1,0 +1,14 @@
+templates:
+  params:
+    bootswatch: flatly
+
+navbar:
+  type: default
+  left:
+  - text: Reference
+    href: reference/index.html
+  - text: Articles
+    href: articles/index.html
+  right:
+  - icon: fa-github
+    href: https://github.com/dchiu911/naim
