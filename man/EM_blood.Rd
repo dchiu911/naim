@@ -41,4 +41,3 @@ EM_blood(A, B, AB, O)
 A <- 500; B <- 200; AB <- 50; O <- 250
 EM_blood(A, B, AB, O, verbose = TRUE)
 }
-

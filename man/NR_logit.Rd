@@ -39,4 +39,3 @@ NR_logit(x, y, n)
 NR_logit(x, y, n, verbose = TRUE)
 NR_logit(x, y, n, tol = 1e-10, verbose = TRUE)
 }
-
