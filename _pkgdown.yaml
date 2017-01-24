@@ -3,6 +3,7 @@ templates:
     bootswatch: flatly
 
 navbar:
+  title: ~
   type: default
   left:
   - text: Reference
